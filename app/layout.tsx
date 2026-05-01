@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ClerkProvider, SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
+import { shadcn } from "@clerk/themes";
 import { Button } from "@/components/ui/button";
 import { Roboto, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -40,7 +41,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <ClerkProvider>
+        <ClerkProvider appearance={{ theme: shadcn }}>
           <ThemeProvider>
             <header className="flex justify-between items-center p-4 h-16">
               <span className="font-semibold text-lg">Link Shortener</span>
