@@ -103,12 +103,15 @@ const { user } = useUser()
 
 `ClerkProvider` is mounted once in `app/layout.tsx`. Do not add it anywhere else.
 
+The `shadcn` theme from `@clerk/themes` is applied so that Clerk UI components match the shadcn/ui design system.
+
 ```tsx
 import { ClerkProvider } from '@clerk/nextjs'
+import { shadcn } from '@clerk/themes'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ theme: shadcn }}>
       <html lang="en">
         <body>{children}</body>
       </html>
