@@ -10,11 +10,13 @@ This is a **link shortener** web application. It lets authenticated users create
 
 Detailed standards are documented in the `/docs` directory. **Before writing or modifying any code, you MUST read every relevant file in `/docs` using the `read_file` tool. Do not rely on memory or assumptions — always retrieve and reference the current file contents.**
 
-| Area | File | Read before… |
-|---|---|---|
-| Authentication | [docs/auth.md](docs/auth.md) | Any auth flow, sign-in/sign-up UI, route protection, or Clerk usage |
-| UI Components | [docs/ui.md](docs/ui.md) | Any component, styling, layout, or icon change |
-| Database | [docs/database.md](docs/database.md) | Any schema change, database query, migration, or Drizzle ORM usage |
+| Area           | File                                           | Read before…                                                              |
+| -------------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
+| Authentication | [docs/auth.md](docs/auth.md)                   | Any auth flow, sign-in/sign-up UI, route protection, or Clerk usage       |
+| UI Components  | [docs/ui.md](docs/ui.md)                       | Any component, styling, layout, or icon changes                           |
+| Database       | [docs/database.md](docs/database.md)           | Any schema changes, database queries, migrations, or Drizzle ORM usage    |
+| Data Fetching  | [docs/data-fetching.md](docs/data-fetching.md) | Any server-side data fetching, `/data` helpers, or dashboard data loading |
+| Data Mutation  | [docs/data-mutation.md](docs/data-mutation.md) | Any server action, create/update/delete operation, or form submission      |
 
 > **Rule:** If your change touches an area listed above, open and read the corresponding doc file first. Failure to do so may produce code that violates project conventions.
 
