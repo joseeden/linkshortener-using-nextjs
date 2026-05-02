@@ -1,6 +1,10 @@
 # Agent Instructions
 
+
 This is a **link shortener** web application. It lets authenticated users create short URLs that redirect to long destination URLs.
+
+**IMPORTANT: Never use `middleware.tsx` in this project.**
+`middleware.tsx` is deprecated in newer versions of Next.js (v13+). All middleware logic must be implemented in `proxy.ts` instead. See the project structure and relevant documentation for details.
 
 ## Coding Standards
 
@@ -42,6 +46,7 @@ Relevant guides:
 - `01-app/01-getting-started/15-route-handlers.md`
 - `01-app/01-getting-started/08-caching.md`
 
+
 ## Project Structure
 
 ```
@@ -58,7 +63,7 @@ lib/
 docs/           # Coding standards and conventions (read before making changes)
 drizzle.config.ts
 next.config.ts
-proxy.ts        # Next.js request proxy (Clerk middleware lives here — see docs/auth.md)
+proxy.ts        # Next.js request proxy (Clerk middleware and all middleware logic — never use middleware.tsx)
 ```
 
 ## Key Conventions
