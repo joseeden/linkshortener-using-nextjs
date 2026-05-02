@@ -37,7 +37,12 @@ export default function RootLayout({
       <head />
       <body className={`min-h-full flex flex-col ${roboto.variable} ${geistMono.variable}`}>
         <ClerkProvider
-          appearance={{ theme: shadcn }}
+          appearance={{
+            theme: shadcn,
+            elements: {
+              modalBackdrop: { background: 'rgba(0,0,0,0.4)' },
+            },
+          }}
           signInForceRedirectUrl="/dashboard"
           signUpForceRedirectUrl="/dashboard"
         >
