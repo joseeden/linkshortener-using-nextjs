@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   const links = await getLinksByUser(userId);
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8">
+    <main className="mx-auto w-[60%] px-4 py-8">
       <h1 className="mb-6 text-2xl font-semibold">Your Links</h1>
       {links.length === 0 ? (
         <p className="text-muted-foreground">You have no shortened links yet.</p>
