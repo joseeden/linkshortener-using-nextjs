@@ -1,3 +1,7 @@
+/* Dim modal overlay more in dark mode so modal stands out */
+.dark [data-slot="dialog-overlay"] {
+  background: rgba(0,0,0,0.6) !important;
+}
 @import "tailwindcss";
 /* @import "@clerk/ui/themes/shadcn.css"; */
 @import "@clerk/themes/shadcn.css";
@@ -58,9 +62,11 @@
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: #F9F6EE;
+  /* --card: oklch(0.98 0.01 100);  // eggshell white */
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover:#F9F6EE;
+  /* --popover: oklch(0.98 0.01 100); // eggshell white */
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
@@ -93,9 +99,11 @@
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: #36454F; 
+  /* --card: oklch(0.28 0.01 100); // lighter gray for dark mode  */
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: #36454F;
+  /* --popover: oklch(0.28 0.01 100); // lighter gray for dark mode  */
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
