@@ -13,12 +13,12 @@ export default async function DashboardPage() {
   const links = await getLinksByUser(userId);
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-8">
+    <main className="mx-auto max-w-5xl px-4 py-8">
       <h1 className="mb-6 text-2xl font-semibold">Your Links</h1>
       {links.length === 0 ? (
         <p className="text-muted-foreground">You have no shortened links yet.</p>
       ) : (
-        <ul className="flex flex-col gap-3 max-w-2xl sm:max-w-3xl md:max-w-4xl lg:max-w-5xl w-full mx-auto">
+        <ul className="flex flex-col gap-3">
           {links.map((link) => (
             <li key={link.id}>
               <Card>
