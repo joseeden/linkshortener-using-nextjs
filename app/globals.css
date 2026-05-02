@@ -4,6 +4,11 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Override Clerk modal backdrop to be dim, not fully black */
+.cl-internal-modalBackdrop {
+  background: rgba(0,0,0,0.4) !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -125,8 +130,6 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
+    font-family: var(--font-roboto), system-ui, sans-serif;
   }
 }
