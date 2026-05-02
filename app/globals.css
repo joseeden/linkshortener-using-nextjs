@@ -9,7 +9,8 @@
 @import "shadcn/tailwind.css";
 
 /* Override Clerk modal backdrop to be dim, not fully black */
-.cl-internal-modalBackdrop {
+html .cl-internal-modalBackdrop,
+html body .cl-internal-modalBackdrop {
   background: rgba(0,0,0,0.4) !important;
 }
 
