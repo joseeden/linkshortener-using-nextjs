@@ -1,10 +1,17 @@
 import { SignUpButton, SignInButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+import { redirect } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { AuthRedirect } from '@/components/AuthRedirect'
 import { Link2, Zap, LayoutDashboard } from 'lucide-react'
 
-export default function Home() {
+export default async function Home() {
+  const { userId } = await auth()
+  if (userId) redirect('/dashboard')
+
   return (
-    <main className="flex flex-1 flex-col">
+    <AuthRedirect>
+      <main className="flex flex-1 flex-col">
       {/* Hero Section */}
       <section className="flex flex-1 flex-col items-center justify-center px-4 py-24 text-center">
         <div className="mx-auto max-w-3xl space-y-6">
@@ -17,16 +24,16 @@ export default function Home() {
             links from one simple dashboard — free to get started.
           </p>
           <div className="flex flex-col items-center gap-3 pt-2 sm:flex-row sm:justify-center">
-            <SignUpButton mode="modal">
-              <Button size="lg" className="w-full px-8 sm:w-auto">
-                Get Started for Free
-              </Button>
-            </SignUpButton>
-            <SignInButton mode="modal">
-              <Button variant="outline" size="lg" className="w-full px-8 sm:w-auto">
-                Sign In
-              </Button>
-            </SignInButton>
+              <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
+                <Button size="lg" className="w-full px-8 sm:w-auto">
+                  Get Started for Free
+                </Button>
+              </SignUpButton>
+              <SignInButton mode="modal" forceRedirectUrl="/dashboard">
+                <Button variant="outline" size="lg" className="w-full px-8 sm:w-auto">
+                  Sign In
+                </Button>
+              </SignInButton>
           </div>
         </div>
       </section>
@@ -72,5 +79,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </AuthRedirect>
   )
 }

@@ -35,17 +35,21 @@ export default function RootLayout({
     >
       <head />
       <body className={`min-h-full flex flex-col ${roboto.variable} ${geistMono.variable}`}>
-        <ClerkProvider appearance={{ theme: shadcn }}>
+        <ClerkProvider
+          appearance={{ theme: shadcn }}
+          signInForceRedirectUrl="/dashboard"
+          signUpForceRedirectUrl="/dashboard"
+        >
           <ThemeProvider>
             <header className="flex justify-between items-center p-4 h-16">
               <span className="font-semibold text-lg">Link Shortener</span>
               <div className="flex items-center gap-4">
                 <ThemeToggle />
                 <Show when="signed-out">
-                  <SignInButton mode="modal">
+                  <SignInButton mode="modal" forceRedirectUrl="/dashboard">
                     <Button variant="ghost">Sign In</Button>
                   </SignInButton>
-                  <SignUpButton mode="modal">
+                  <SignUpButton mode="modal" forceRedirectUrl="/dashboard">
                     <Button>Sign Up</Button>
                   </SignUpButton>
                 </Show>
