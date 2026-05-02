@@ -31,16 +31,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}})()`,
-          }}
-        />
-      </head>
-      <body className="min-h-full flex flex-col">
+      <head />
+      <body className={`min-h-full flex flex-col ${roboto.variable} ${geistMono.variable}`}>
         <ClerkProvider appearance={{ theme: shadcn }}>
           <ThemeProvider>
             <header className="flex justify-between items-center p-4 h-16">

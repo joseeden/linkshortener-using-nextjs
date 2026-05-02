@@ -10,6 +10,7 @@ Detailed standards are documented in the `/docs` directory. **Before writing or 
 |---|---|---|
 | Authentication | [docs/auth.md](docs/auth.md) | Any auth flow, sign-in/sign-up UI, route protection, or Clerk usage |
 | UI Components | [docs/ui.md](docs/ui.md) | Any component, styling, layout, or icon change |
+| Database | [docs/database.md](docs/database.md) | Any schema change, database query, migration, or Drizzle ORM usage |
 
 > **Rule:** If your change touches an area listed above, open and read the corresponding doc file first. Failure to do so may produce code that violates project conventions.
 
