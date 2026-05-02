@@ -2,6 +2,7 @@ import { auth } from '@clerk/nextjs/server';
 import { getLinksByUser } from '@/data/links';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link2, ExternalLink } from 'lucide-react';
+import { CreateLinkModal } from '@/components/CreateLinkModal';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -14,7 +15,10 @@ export default async function DashboardPage() {
 
   return (
     <main className="mx-auto w-[60%] px-4 py-8">
-      <h1 className="mb-6 text-2xl font-semibold">Your Links</h1>
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Your Links</h1>
+        <CreateLinkModal />
+      </div>
       {links.length === 0 ? (
         <p className="text-muted-foreground">You have no shortened links yet.</p>
       ) : (

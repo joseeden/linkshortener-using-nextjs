@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Roboto, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -59,6 +60,7 @@ export default function RootLayout({
               </div>
             </header>
             {children}
+            <Toaster richColors position="bottom-right" />
           </ThemeProvider>
         </ClerkProvider>
       </body>
