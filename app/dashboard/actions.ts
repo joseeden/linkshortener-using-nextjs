@@ -46,11 +46,11 @@ export async function createLinkAction(input: CreateLinkInput): Promise<{ succes
   try {
     await createLink({ userId, url: result.data.url, slug });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Failed to create link';
+    const message = err instanceof Error ? err.message : '';
     if (message.includes('unique') || message.includes('duplicate')) {
       return { error: 'That slug is already taken. Please choose another.' };
     }
-    return { error: message };
+    return { error: 'An unexpected error occurred. Please try again.' };
   }
 
   revalidatePath('/dashboard');
@@ -79,11 +79,11 @@ export async function updateLinkAction(input: UpdateLinkInput): Promise<{ succes
   try {
     await updateLink(input.id, userId, { url: result.data.url, slug: result.data.slug });
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Failed to update link';
+    const message = err instanceof Error ? err.message : '';
     if (message.includes('unique') || message.includes('duplicate')) {
       return { error: 'That slug is already taken. Please choose another.' };
     }
-    return { error: message };
+    return { error: 'An unexpected error occurred. Please try again.' };
   }
 
   revalidatePath('/dashboard');
