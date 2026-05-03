@@ -3,6 +3,12 @@
 
 This project is a full-stack Link Shortener application designed to demonstrate how a modern web app is built using multiple architectural layers, including frontend, backend, authentication, and database integration.
 
+<div class='img-center'>
+
+![](/img/docs/Screenshot2026-05-03131335.png)
+
+</div>
+
 The goal is not just to build a simple URL shortener, but to simulate a real-world system where:
 
 - Users authenticate securely
