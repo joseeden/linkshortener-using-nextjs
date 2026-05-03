@@ -4,7 +4,10 @@ import { NextResponse } from 'next/server'
 const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
 const isRateLimitedRoute = createRouteMatcher(['/api/redirect/(.*)'])
 
-// In-memory rate limit store (best-effort; resets per edge instance)
+// WARNING: This in-memory store is NOT shared across serverless instances.
+// In production (e.g., Vercel), each cold-start resets the counters, making
+// the effective global limit (RATE_LIMIT × instance_count). Replace with
+// Upstash Redis (@upstash/ratelimit) for reliable distributed rate limiting.
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 const RATE_LIMIT = 30 // max requests per window
 const RATE_WINDOW_MS = 60_000 // 1 minute
@@ -27,8 +30,8 @@ export default clerkMiddleware(async (auth, req) => {
   // Rate-limit unauthenticated access to the public redirect endpoint
   if (isRateLimitedRoute(req)) {
     const ip =
-      req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
       req.headers.get('x-real-ip') ??
+      req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
       'unknown'
     if (checkRateLimit(ip)) {
       return new NextResponse('Too Many Requests', { status: 429 })

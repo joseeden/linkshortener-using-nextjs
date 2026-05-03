@@ -3,9 +3,12 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import { links } from './schema';
 import { type NewLink } from './schema';
 
-const db = drizzle(process.env.DATABASE_URL!);
+if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
+if (!process.env.SEED_USER_ID) throw new Error('SEED_USER_ID is not set');
 
-const userId = process.env.SEED_USER_ID!;
+const db = drizzle(process.env.DATABASE_URL);
+
+const userId = process.env.SEED_USER_ID;
 
 const seedLinks: NewLink[] = [
   {
