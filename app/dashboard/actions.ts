@@ -4,9 +4,25 @@ import { z } from 'zod';
 import { auth } from '@clerk/nextjs/server';
 import { revalidatePath } from 'next/cache';
 import { createLink, updateLink, deleteLink } from '@/data/links';
+import { randomBytes } from 'crypto';
+
+const urlSchema = z
+  .string()
+  .url('Must be a valid URL')
+  .refine(
+    (url) => {
+      try {
+        const { protocol } = new URL(url);
+        return protocol === 'https:' || protocol === 'http:';
+      } catch {
+        return false;
+      }
+    },
+    { message: 'Only http and https URLs are allowed' },
+  );
 
 const createLinkSchema = z.object({
-  url: z.string().url('Must be a valid URL'),
+  url: urlSchema,
   slug: z
     .string()
     .regex(/^[a-zA-Z0-9_-]*$/, 'Slug may only contain letters, numbers, hyphens, and underscores')
@@ -25,7 +41,7 @@ export async function createLinkAction(input: CreateLinkInput): Promise<{ succes
     return { error: result.error.issues[0].message };
   }
 
-  const slug = result.data.slug ?? Math.random().toString(36).slice(2, 8);
+  const slug = result.data.slug ?? randomBytes(4).toString('hex');
 
   try {
     await createLink({ userId, url: result.data.url, slug });
@@ -42,7 +58,7 @@ export async function createLinkAction(input: CreateLinkInput): Promise<{ succes
 }
 
 const updateLinkSchema = z.object({
-  url: z.string().url('Must be a valid URL'),
+  url: urlSchema,
   slug: z
     .string()
     .min(1, 'Slug is required')

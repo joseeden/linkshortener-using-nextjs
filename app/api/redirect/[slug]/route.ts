@@ -38,6 +38,10 @@ export async function GET(
     // Non-fatal — still redirect the user
   }
 
+  const redirectUrl = new URL(link.url);
+  if (redirectUrl.protocol !== 'https:' && redirectUrl.protocol !== 'http:') {
+    return new NextResponse('Invalid redirect target', { status: 400 });
+  }
   const status = link.isPermanent ? 301 : 302;
   return NextResponse.redirect(link.url, { status });
 }
