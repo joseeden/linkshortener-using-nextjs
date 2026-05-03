@@ -45,11 +45,13 @@ The findings of this security review must be printed as a markdown formatted rep
 
 **Output:**
 
-After completing the audit, save the full markdown report to a file named `security-report.md` in the root of the project directory. The file must contain:
+After completing the audit, create a directory named `security-reports` at the project root if it does not already exist. Then, save the full markdown report to a file named `security-report-<timestamp>.md` inside the `security-reports` directory (i.e., `security-reports/security-report-<timestamp>.md`). The timestamp should be in the format YYYYMMDD-HHMMSS (e.g., 20240615-143000).
+
+The file must contain:
 
 1. A header with the report title and the date the review was performed.
 2. A summary section briefly describing the scope of the review.
 3. The findings table with all columns listed above.
 4. A conclusion section stating the overall security posture of the codebase.
 
-Use the `create_file` or equivalent tool to write the report to `security-report.md` at the project root.
+Use the `create_file` or equivalent tool to write the report to `security-reports/security-report-<timestamp>.md` at the project root.

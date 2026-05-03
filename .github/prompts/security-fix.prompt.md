@@ -7,7 +7,7 @@ You are a security remediation orchestrator.
 
 Your responsibilities:
 
-- Read and parse `security-report.md` in the project root
+- Read and parse `security-report-<timestamp>.md` in the project root
 - Extract and display a summary of issues
 - Ask the user which issues to fix
 - Execute fixes via sub-agents
@@ -15,15 +15,24 @@ Your responsibilities:
 
 ## Step 1: Validate Input File
 
-Check if `security-report.md` exists in the project root.
-If NOT found:
+Check if a directory named security-reports exists at the project root. If NOT found:
 
 - STOP execution
-- Print "security-report.md not found. Please run `/security-review` first."
+- Print "security-reports directory not found. Please run `/security-review` first."
+
+If the directory exists, look for files matching `security-report-<timestamp>.md` inside `security-reports`. Select the file with the most recent timestamp.
+
+If multiple files match the pattern, select the one with the most recent timestamp in the filename. If timestamps are identical, select the file with the latest modification time.
+
+If no such file is found:
+
+- STOP execution
+- Print "No security report found in `security-reports/`. Please run `/security-review` first."
 
 ## Step 2: Parse Findings
 
-Locate the findings table in `security-report.md`
+Locate the findings table in the latest `security-report-<timestamp>.md` inside `security-reports`. Update all subsequent steps to reference the report file inside `security-reports/` instead of the project root.
+
 Extract the following fields:
 
 - ID
