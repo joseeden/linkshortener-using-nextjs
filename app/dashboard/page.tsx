@@ -3,6 +3,8 @@ import { getLinksByUser } from '@/data/links';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link2, ExternalLink } from 'lucide-react';
 import { CreateLinkModal } from '@/components/CreateLinkModal';
+import { EditLinkModal } from '@/components/EditLinkModal';
+import { DeleteLinkDialog } from '@/components/DeleteLinkDialog';
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -44,6 +46,10 @@ export default async function DashboardPage() {
                     <p className="mt-1 text-xs text-muted-foreground">
                       Created at {link.createdAt.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
                     </p>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-1">
+                    <EditLinkModal link={link} />
+                    <DeleteLinkDialog id={link.id} />
                   </div>
                 </CardContent>
               </Card>
