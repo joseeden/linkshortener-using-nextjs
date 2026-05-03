@@ -31,6 +31,7 @@ export default clerkMiddleware(async (auth, req) => {
   if (isRateLimitedRoute(req)) {
     const ip =
       req.headers.get('x-real-ip') ??
+      // NOTE: x-forwarded-for is client-controllable; only safe behind a trusted reverse proxy that strips/overwrites this header
       req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
       'unknown'
     if (checkRateLimit(ip)) {
