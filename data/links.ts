@@ -1,7 +1,7 @@
 import { db } from '@/db';
 import { links } from '@/db/schema';
 import { type Link, type NewLink } from '@/db/schema';
-import { eq, and, desc } from 'drizzle-orm';
+import { eq, and, desc, sql } from 'drizzle-orm';
 
 export async function getLinksByUser(userId: string): Promise<Link[]> {
   try {
@@ -34,6 +34,23 @@ export async function updateLink(id: number, userId: string, data: { url: string
 export async function deleteLink(id: number, userId: string): Promise<void> {
   try {
     await db.delete(links).where(and(eq(links.id, id), eq(links.userId, userId)));
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function getLinkBySlug(slug: string): Promise<Link | undefined> {
+  try {
+    const [link] = await db.select().from(links).where(eq(links.slug, slug)).limit(1);
+    return link;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function incrementLinkClicks(id: number): Promise<void> {
+  try {
+    await db.update(links).set({ clicks: sql`${links.clicks} + 1` }).where(eq(links.id, id));
   } catch (error) {
     throw error;
   }
