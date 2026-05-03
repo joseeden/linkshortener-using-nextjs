@@ -3,7 +3,7 @@
 
 This project is a full-stack Link Shortener application designed to demonstrate how a modern web app is built using multiple architectural layers, including frontend, backend, authentication, and database integration.
 
-See [Live Demo.](https://linkshortener-using-nextjs-a91gjaca6-jose-edens-projects.vercel.app/) 
+See [Live Demo.](https://linkshortener-using-nextjs.vercel.app/) 
 
 <div class='img-center'>
 
